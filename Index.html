@@ -1,0 +1,457 @@
+﻿@model ICETASK1_ST10439697_PROG7311.Models.CV
+
+@{
+    ViewData["Title"] = "Xola Mgangxela - Portfolio";
+}
+
+<style>
+    /* ── HERO / HEADER ── */
+    .cv-hero {
+        background: var(--black);
+        padding: 3.5rem 2.5rem 2.5rem;
+        margin-bottom: 2.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .cv-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 6px;
+            height: 100%;
+            background: repeating-linear-gradient( to bottom, var(--blue) 0px, var(--blue) 36px, transparent 36px, transparent 48px );
+        }
+
+        .cv-hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+            .cv-hero h1 span {
+                color: var(--blue);
+            }
+
+        .cv-hero .role-tag {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 1.5rem;
+        }
+
+    .contact-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+        .contact-pills a,
+        .contact-pills span {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: rgba(255,255,255,0.82);
+            padding: 0.3rem 0.9rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+            .contact-pills a:hover {
+                background: var(--blue);
+                border-color: var(--blue);
+                color: white;
+            }
+
+    /* ── SECTION CARDS ── */
+    .cv-section {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-top: 4px solid var(--blue);
+        margin-bottom: 1.75rem;
+        transition: box-shadow 0.25s;
+    }
+
+        .cv-section:hover {
+            box-shadow: 5px 5px 0 var(--blue);
+        }
+
+    .cv-section-header {
+        background: var(--blue);
+        color: var(--white);
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .cv-section-body {
+        padding: 1.4rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+        .edu-entry:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+    .edu-degree {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--black);
+    }
+
+    .edu-institution {
+        color: var(--blue);
+        font-size: 0.88rem;
+        font-weight: 600;
+        margin-top: 0.15rem;
+    }
+
+    .edu-meta {
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-top: 0.15rem;
+    }
+
+    .edu-status {
+        display: inline-block;
+        background: var(--blue);
+        color: white;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.1rem 0.5rem;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+    }
+
+        .edu-status.completed {
+            background: #1a8c4e;
+        }
+
+    /* ── SKILLS ── */
+    .skills-group {
+        margin-bottom: 1rem;
+    }
+
+        .skills-group:last-child {
+            margin-bottom: 0;
+        }
+
+    .skills-group-label {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--muted);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    .skill-chip {
+        display: inline-block;
+        border: 1.5px solid var(--blue);
+        color: var(--blue);
+        background: transparent;
+        padding: 0.28rem 0.8rem;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin: 0.2rem;
+        transition: all 0.18s;
+    }
+
+        .skill-chip:hover {
+            background: var(--blue);
+            color: white;
+        }
+
+    /* ── PROJECTS ── */
+    .project-card {
+        border-left: 4px solid var(--blue);
+        padding: 1rem 1.1rem;
+        background: var(--off);
+        margin-bottom: 1rem;
+        transition: background 0.2s;
+    }
+
+        .project-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-card:hover {
+            background: #eef2ff;
+        }
+
+    .project-name {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--black);
+        margin-bottom: 0.4rem;
+    }
+
+    .project-desc {
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.65;
+        margin-bottom: 0.6rem;
+    }
+
+    .tech-badge {
+        display: inline-block;
+        background: var(--blue);
+        color: white;
+        padding: 0.14rem 0.55rem;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin: 0.15rem;
+    }
+
+    /* ── INTERESTS ── */
+    .interests-text {
+        font-size: 0.92rem;
+        color: #444;
+        line-height: 1.75;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
+
+<!-- ── HERO HEADER ── -->
+<div class="cv-hero fade-in">
+    <div class="role-tag">&#9679; Computer Scientist &nbsp;&bull;&nbsp; Application Developer</div>
+    <h1>@Model.Name <span>@Model.Surname</span></h1>
+    <div class="contact-pills">
+        @if (!string.IsNullOrEmpty(Model.Email))
+        {
+            <a href="mailto:@Model.Email">&#9993; @Model.Email</a>
+        }
+        @if (!string.IsNullOrEmpty(Model.PhoneNumber))
+        {
+            <span>&#128222; @Model.PhoneNumber</span>
+        }
+        @if (!string.IsNullOrEmpty(Model.Location))
+        {
+            <span>&#128205; @Model.Location</span>
+        }
+        @if (!string.IsNullOrEmpty(Model.GitHubUrl))
+        {
+            <a href="@Model.GitHubUrl" target="_blank">&#128187; GitHub</a>
+        }
+        @if (!string.IsNullOrEmpty(Model.LinkedInUrl))
+        {
+            <a href="@Model.LinkedInUrl" target="_blank">&#128279; LinkedIn</a>
+        }
+    </div>
+</div>
+
+<div class="row g-4">
+
+    <!-- ── LEFT COLUMN ── -->
+    <div class="col-lg-8">
+
+        <!-- About -->
+        @if (!string.IsNullOrEmpty(Model.ProfessionalProfile))
+        {
+            <div class="cv-section fade-in">
+                <div class="cv-section-header">&#128100; &nbsp;About Me</div>
+                <div class="cv-section-body">
+                    <p class="about-text">@Model.ProfessionalProfile</p>
+                </div>
+            </div>
+        }
+
+        <!-- Projects -->
+        @if (Model.Projects != null && Model.Projects.Any())
+        {
+            <div class="cv-section fade-in">
+                <div class="cv-section-header">&#128187; &nbsp;Projects</div>
+                <div class="cv-section-body">
+                    @foreach (var project in Model.Projects)
+                    {
+                        <div class="project-card">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                                <div class="project-name">@project.ProjectName</div>
+                                <div class="d-flex gap-2">
+                                    @if (!string.IsNullOrEmpty(project.GitHubUrl))
+                                    {
+                                        <a href="@project.GitHubUrl" target="_blank" class="btn btn-outline-dark btn-sm">&#128187; GitHub</a>
+                                    }
+                                   
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(project.Description))
+                            {
+                                <p class="project-desc">@project.Description</p>
+                            }
+                            @if (!string.IsNullOrEmpty(project.TechStack))
+                            {
+                                <div>
+                                    @foreach (var tech in project.TechStack.Split(','))
+                                    {
+                                        <span class="tech-badge">@tech.Trim()</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- Education -->
+        @if (Model.Educations != null && Model.Educations.Any())
+        {
+            <div class="cv-section fade-in">
+                <div class="cv-section-header">&#127979; &nbsp;Education</div>
+                <div class="cv-section-body">
+                    @foreach (var edu in Model.Educations)
+                    {
+                        <div class="edu-entry">
+                            <div class="edu-degree">
+                                @edu.Qualification
+                                @if (!string.IsNullOrEmpty(edu.Status))
+                                {
+                                    <span class="edu-status @(edu.Status == "Completed" ? "completed" : "")">@edu.Status</span>
+                                }
+                            </div>
+                            <div class="edu-institution">@edu.InstitutionName</div>
+                            @if (edu.YearStarted.HasValue)
+                            {
+                                <div class="edu-meta">
+                                    @edu.YearStarted &ndash; @(edu.YearCompleted.HasValue? edu.YearCompleted.ToString() : "Present")
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div class="col-lg-4">
+
+        <!-- Skills -->
+        @if (Model.Skills != null && Model.Skills.Any())
+        {
+            <div class="cv-section fade-in">
+                <div class="cv-section-header">&#128736; &nbsp;Skills</div>
+                <div class="cv-section-body">
+                    @{
+                        var technicalSkills = Model.Skills.Where(s => s.Category == "Technical").ToList();
+                        var softSkills = Model.Skills.Where(s => s.Category == "Soft Skills").ToList();
+                    }
+                    @if (technicalSkills.Any())
+                    {
+                        <div class="skills-group">
+                            <div class="skills-group-label">Technical</div>
+                            @foreach (var skill in technicalSkills)
+                            {
+                                <span class="skill-chip">@skill.SkillName</span>
+                            }
+                        </div>
+                    }
+                    @if (softSkills.Any())
+                    {
+                        <div class="skills-group">
+                            <div class="skills-group-label">Soft Skills</div>
+                            @foreach (var skill in softSkills)
+                            {
+                                <span class="skill-chip">@skill.SkillName</span>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- Interests -->
+        @if (!string.IsNullOrEmpty(Model.Interests))
+        {
+            <div class="cv-section fade-in">
+                <div class="cv-section-header">&#127919; &nbsp;Interests</div>
+                <div class="cv-section-body">
+                    <p class="interests-text">@Model.Interests</p>
+                </div>
+            </div>
+        }
+
+        <!-- Contact Card -->
+        <div class="cv-section fade-in">
+            <div class="cv-section-header">&#128222; &nbsp;Contact</div>
+            <div class="cv-section-body">
+                <p style="font-size:0.88rem; color:var(--muted); margin-bottom:0.75rem;">
+                    Interested in working together or have an opportunity to share?
+                </p>
+                <a href="mailto:@Model.Email" class="btn btn-success w-100">
+                    &#9993; &nbsp;Send Me an Email
+                </a>
+                <a href="~/files/YourNameCV.pdf" class="btn btn-dark" download>
+                    Download My CV (PDF)
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.fade-in').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 100);
+        });
+    </script>
+}
